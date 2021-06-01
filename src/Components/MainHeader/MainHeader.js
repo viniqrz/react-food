@@ -1,9 +1,12 @@
 import './MainHeader.css';
 import CartModal from './../CartModal/CartModal.js';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import CartContext from '../../store/cart-context';
 
 const MainHeader = function(props) {
   const [displayCart, setDisplayCart] = useState(false);
+
+  const cart = useContext(CartContext);
 
   const displayCartHandler = function(e) {
     setDisplayCart(!displayCart);
@@ -25,7 +28,7 @@ const MainHeader = function(props) {
         <i className="fas fa-shopping-cart"></i>
         <p className='cart-text'>Your Cart</p>
         <div className='cart-counter'>
-          <p>{props.items.length}</p>
+          <p>{cart.totalAmount}</p>
         </div>
       </button>
     </header>

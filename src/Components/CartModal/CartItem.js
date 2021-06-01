@@ -1,38 +1,39 @@
-import { useState } from 'react';
+import React, {useContext} from 'react';
+import CartContext from '../../store/cart-context';
 import './CartItem.css';
 
 const CartItem = function(props) {
-  const [itemAmount, setItemAmount] = useState(props.amount); 
+  const cart = useContext(CartContext);
 
   const reduceAmountHandler = function(e) {
-    e.preventDefault();
-    if (itemAmount === 1) return;
+    if (props.amount === 1) {
+      cart.removeItem(props.id);
+      return
+    }
 
-    props.onAmountChange(itemAmount - 1, props.index);
-    setItemAmount(itemAmount - 1);
+    cart.reduceAmount(props.id);
   }
 
   const addAmountHandler = function(e) {
-    e.preventDefault();
-
-    props.onAmountChange(itemAmount + 1, props.index);
-    setItemAmount(itemAmount + 1);
+    cart.addAmount(props.id);
   }
 
   return (
-    <div className='cart-item'>
-      <div className='cart-item-info'>
-        <h2 className='cart-item-name'>{props.name}</h2>
-        <h4 className='cart-item-price'>
-          {Math.round(props.price * itemAmount * 100) / 100}
-        </h4>
-        <h4 className='cart-item-amount'>x{itemAmount}</h4>
-      </div>
-      <div className='cart-item-buttons'>
-        <button onClick={reduceAmountHandler}>-</button>
-        <button onClick={addAmountHandler}>+</button>
-      </div>
-    </div>
+    <React.Fragment>
+        <div className='cart-item'>
+          <div className='cart-item-info'>
+            <h2 className='cart-item-name'>{props.name}</h2>
+            <h4 className='cart-item-price'>
+              {Math.round(props.price * props.amount * 100) / 100}
+            </h4>
+            <h4 className='cart-item-amount'>x{props.amount}</h4>
+          </div>
+          <div className='cart-item-buttons'>
+            <button onClick={reduceAmountHandler}>-</button>
+            <button onClick={addAmountHandler}>+</button>
+          </div>
+        </div>
+    </React.Fragment>
   );
 }
 

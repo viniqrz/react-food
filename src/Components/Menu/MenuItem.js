@@ -1,9 +1,12 @@
-import {React, useState} from 'react';
+import {React, useContext, useState} from 'react';
+import CartContext from '../../store/cart-context';
 // import CartModal from '../CartModal/CartModal';
 import './MenuItem.css';
 
 const MenuItem = function(props) {
   const [itemAmount, setItemAmount] = useState(1); 
+
+  const cart = useContext(CartContext);
 
   const amountChangeHandler = function(e) {
     if (e.target.value < 0 || e.target.value > 99) return;
@@ -12,8 +15,12 @@ const MenuItem = function(props) {
 
   const addToCartHandler = function(e) {
     e.preventDefault();
-    props.onTransferToCart(props.id, itemAmount);
-    // alert(itemAmount);
+
+    cart.addItem([{
+      id: props.id,
+      name: props.name,
+      price: props.price
+    }, parseInt(itemAmount)]);
   }
 
   return (
@@ -30,7 +37,6 @@ const MenuItem = function(props) {
           value={itemAmount}
           onChange={amountChangeHandler}
           type='number'
-          // min='1'
         ></input>
         <button onClick={addToCartHandler}>+Add</button>
       </div>
