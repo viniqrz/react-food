@@ -1,0 +1,65 @@
+html {
+  --scrollbarBG: #cfd8dc38;
+  --thumbBG: #9badb669;
+}
+.cart-scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+.cart-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+.cart-scroll-container::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+}
+.cart-scroll-container::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG) ;
+  border-radius: 6px;
+  border: 1px solid var(--scrollbarBG);
+}
+
+.cart-scroll-container {
+  height: 65vh;
+  overflow-y: scroll;
+}
+
+.cart-info {
+  display: flex;
+  justify-content: space-between;
+  color: rgba(0, 0, 0, 0.89);
+  margin-top: 1rem;
+}
+
+.cart-list-buttons {
+  text-align: right;
+}
+
+.cart-list-buttons button {
+  cursor: pointer;
+  margin-left: 10px;
+  margin-top: 1rem;
+  /* border: none; */
+  font-size: 1rem;
+  border-radius: 16px;
+  /* border: 1px solid grey; */
+  padding: 0.5rem 2rem;
+}
+
+.cart-list-close-btn {
+  border: 1px solid rgba(0, 0, 0, 0.349);
+  color: tomato;
+}
+
+.cart-list-order-btn {
+  border: none;
+  padding: 0.5rem 2rem;
+  background-color: tomato;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .cart-scroll-container::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
+  }
+}
