@@ -16,11 +16,12 @@ const MenuItem = function(props) {
   const addToCartHandler = function(e) {
     e.preventDefault();
 
-    cart.addItem([{
+    cart.addItem({
       id: props.id,
       name: props.name,
-      price: props.price
-    }, parseInt(itemAmount)]);
+      price: props.price,
+      amount: itemAmount,
+    });
   }
 
   return (

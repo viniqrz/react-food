@@ -5,8 +5,8 @@ import CartContext from '../../store/cart-context';
 
 const CartList = function(props) {
   const calcTotalPrice = function() {
-    const total = cart.items
-      .map(el => el[0].price * el[1])
+    const total = cart.cartState.items
+      .map(el => el.price * el.amount)
       .reduce((a, b) => a + b, 0);
     
     return Math.round(total * 100) / 100;
@@ -17,13 +17,13 @@ const CartList = function(props) {
   return (
     <div className='cart-list'>
       <div className='cart-scroll-container'>
-        {cart.items.map((item) => (
+        {cart.cartState.items.map((item) => (
           <CartItem 
             key={Math.random().toString()}
-            id={item[0].id}
-            name={item[0].name}
-            price={item[0].price}
-            amount={item[1]}
+            id={item.id}
+            name={item.name}
+            price={item.price}
+            amount={item.amount}
           />
         ))}
       </div>

@@ -26,9 +26,9 @@ const MainHeader = function(props) {
       <h1>ReactFood</h1>
       <button className='cart-btn' onClick={displayCartHandler}>
         <i className="fas fa-shopping-cart"></i>
-        <p className='cart-text'>Your Cart</p>
+        <p className='cart-text'>Open Cart</p>
         <div className='cart-counter'>
-          <p>{cart.totalAmount}</p>
+          <p>{cart.cartState.totalAmount}</p>
         </div>
       </button>
     </header>

@@ -6,16 +6,18 @@ const CartItem = function(props) {
   const cart = useContext(CartContext);
 
   const reduceAmountHandler = function(e) {
-    if (props.amount === 1) {
-      cart.removeItem(props.id);
-      return
-    }
-
-    cart.reduceAmount(props.id);
+    cart.removeItem({
+      id: props.id,
+      amount: props.amount
+    })
   }
 
   const addAmountHandler = function(e) {
-    cart.addAmount(props.id);
+    cart.addItem({
+      id: props.id,
+      amount: 1,
+    });
+
   }
 
   return (
@@ -24,7 +26,7 @@ const CartItem = function(props) {
           <div className='cart-item-info'>
             <h2 className='cart-item-name'>{props.name}</h2>
             <h4 className='cart-item-price'>
-              {Math.round(props.price * props.amount * 100) / 100}
+              ${Math.round(props.price * props.amount * 100) / 100}
             </h4>
             <h4 className='cart-item-amount'>x{props.amount}</h4>
           </div>
