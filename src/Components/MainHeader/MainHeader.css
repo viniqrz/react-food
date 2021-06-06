@@ -16,6 +16,18 @@
   cursor: pointer;
 }
 
+@keyframes bump {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 .cart-btn {
   height: 65%;
   width: 18rem;
@@ -29,6 +41,10 @@
   font-size: 1.6rem;
   font-weight: bold;
   cursor: pointer;
+}
+
+.bump {
+  animation: bump 0.3s linear;
 }
 
 .cart-btn p {

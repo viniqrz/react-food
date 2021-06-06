@@ -19,7 +19,7 @@ html {
 }
 
 .cart-scroll-container {
-  height: 65vh;
+  height: 60vh;
   overflow-y: scroll;
 }
 
@@ -57,9 +57,21 @@ html {
   color: white;
 }
 
+.empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: grey;
+}
+
 @media (max-width: 768px) {
   .cart-scroll-container::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
   }
+
+  /* .cart-scroll-container {
+    height: 5vh;
+  } */
 }

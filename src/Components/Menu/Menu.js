@@ -5,6 +5,7 @@ const Menu = function(props) {
   return (
     <div className='menu'>
       <MenuList dishes={props.items} onSaveToCart={props.onAddToCart}/>
+      {props.children}
     </div>
   )
 }

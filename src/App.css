@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+.loading {
+  animation: App-logo-spin 1s infinite linear;
+  color: tomato;
+  text-align: center;
+  font-size: 4rem;
+  margin: 3rem auto;
+  width: 5rem;
+  /* background-color: tomato; */
+}

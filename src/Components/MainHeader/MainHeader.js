@@ -1,16 +1,34 @@
 import './MainHeader.css';
 import CartModal from './../CartModal/CartModal.js';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CartContext from '../../store/cart-context';
 
 const MainHeader = function(props) {
   const [displayCart, setDisplayCart] = useState(false);
+  const [btnIsHighlighted, setBtnIsHighlighted] = useState(false);
 
   const cart = useContext(CartContext);
+  const items = cart.cartState.items;
 
   const displayCartHandler = function(e) {
     setDisplayCart(!displayCart);
   }
+
+  const btnClasses = `cart-btn ${btnIsHighlighted ? 'bump' : ''}`;
+
+  useEffect(() => {
+    if (items.length === 0) return;
+
+    setBtnIsHighlighted(true);
+
+    const timer = setTimeout(() => {
+      setBtnIsHighlighted(false);
+    }, 300)
+
+    return () => {
+      clearTimeout(timer);
+    }
+  }, [items]);
 
   return (
     <header className='main-header'>
@@ -24,7 +42,7 @@ const MainHeader = function(props) {
         ''}
 
       <h1>ReactFood</h1>
-      <button className='cart-btn' onClick={displayCartHandler}>
+      <button className={btnClasses} onClick={displayCartHandler}>
         <i className="fas fa-shopping-cart"></i>
         <p className='cart-text'>Open Cart</p>
         <div className='cart-counter'>

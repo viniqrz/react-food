@@ -38,7 +38,7 @@ const cartReducer = function(state, action) {
   if (action.type === 'REMOVE') {
     if (action.item.amount <= 1) {
       updatedItems = state.items.filter(el => el.id !== action.item.id);
-      updatedTotalAmount = 0;
+      updatedTotalAmount = state.totalAmount - 1;
     } else {
       const index = state.items.findIndex(el => el.id === action.item.id);
       const existingCartItem = state.items[index];
